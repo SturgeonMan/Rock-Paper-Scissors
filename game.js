@@ -1,7 +1,6 @@
 //Try not to use global variables
 //They are bad for security reasons ;)
-let playerScore = 0;
-let computerScore = 0;
+
 
 
 //Randomly pick a selection using the random function. This function goes through the array and chooses a random
@@ -16,12 +15,25 @@ function computerSelection(){
 
 
 // prompt for you to choose your weapon
-// for now it is random like the computer.
 function playerSelection(){
-    let selections = ["Rock", "Paper", "Scissors"];
-    let decision = selections[Math.floor(Math.random() * selections.length)];
+    let decision = getRadioVal();
     console.log("Players selection: " + decision);
     return decision;
+}
+
+function getRadioVal() {
+    var val;
+    // get list of radio buttons with specified name
+
+    // Issue is, val is not defined, need to figure out how to assign radio selection to val variable
+    // loop through list of radio buttons
+    for (i=0;i<document.forms[0].Choice.length;i++) {
+        if (document.forms[0].Choice[i].checked) {
+            user_input = document.forms[0].Choice[i].value;
+        val=user_input;
+        return val;
+        }
+    }
 }
 
 
@@ -29,7 +41,8 @@ function gameRound() {
     let cawk = 0;
     let playerWeapon = playerSelection();
     let computerWeapon = computerSelection();
-
+    let playerScore = 0;
+    let computerScore = 0;
 
     if (playerWeapon === computerWeapon) {
         cawk = 0;
@@ -53,8 +66,9 @@ function gameRound() {
         alert("Lose!")
         computerScore++;
     }
-
+    
     console.log("Computers score: " + computerScore)
     console.log("Player score: " + playerScore)
 }
+
 
